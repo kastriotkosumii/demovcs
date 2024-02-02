@@ -21,30 +21,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class CustomerController {
 
-    private CustomerService customerService;
+    private final CustomerServiceImp customerServiceImp;
 
-    public CustomerController(CustomerService cs){
-        customerService = cs;
+    public CustomerController(CustomerServiceImp customerServiceImp) {
+        this.customerServiceImp = customerServiceImp;
     }
 
     @GetMapping
     public List<Customer> getAllCustomers(){
-        return customerService.getAllCusotmers();
+        return customerServiceImp.getAllCusotmers();
     }
 
     @GetMapping("/{CustomerID}")
     public Optional<Customer> getCustomerById(@PathVariable("CustomerID") Integer id) {
-        return customerService.getCustomerById(id);
+        return customerServiceImp.getCustomerById(id);
     }
 
     @DeleteMapping("/{CusomerID}")
     public void deleteCustomerById(@PathVariable("CusomerID") Integer id){
-        customerService.deleteCustomerById(id);
+        customerServiceImp.deleteCustomerById(id);
     }
     
     @PostMapping
     public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.CreateCustomer(customer);
+        return customerServiceImp.CreateCustomer(customer);
     }
     
 
