@@ -26,7 +26,7 @@ public class CustomerServiceImp implements CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public Customer CreateCustomer(Customer customer) throws EmailExistException {
+    public Customer createCustomer(Customer customer) throws EmailExistException {
 
         if(customerRepository.existsCustomerByEmail(customer.getName())){
             throw new EmailExistException("Email already exist.");
@@ -35,5 +35,12 @@ public class CustomerServiceImp implements CustomerService {
         return customerRepository.save(customer);
     }
 
+    @Override
+    public Customer updateCustomer(Customer c) throws Exception {
+        Optional<Customer> customer = customerRepository.findById(c.getId());
+
+        return customerRepository.save(c);
+
+    }
 
 }

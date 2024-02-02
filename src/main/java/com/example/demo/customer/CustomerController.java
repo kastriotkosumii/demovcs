@@ -1,20 +1,9 @@
 package com.example.demo.customer;
 
-import org.hibernate.internal.util.type.PrimitiveWrapperHelper.IntegerDescriptor;
-import org.simpleframework.xml.Path;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 
 @RequestMapping(path = "api/v1/customers")
@@ -46,7 +35,12 @@ public class CustomerController {
     
     @PostMapping
     public Customer createCustomer(@RequestBody Customer customer) throws EmailExistException {
-        return customerServiceImp.CreateCustomer(customer);
+        return customerServiceImp.createCustomer(customer);
+    }
+
+    @PutMapping
+    public Customer updateEmployee(@RequestBody Customer customer) throws Exception {
+        return customerServiceImp.updateCustomer(customer);
     }
     
 
