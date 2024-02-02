@@ -27,6 +27,11 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     public Customer CreateCustomer(Customer customer){
+
+        if(customerRepository.existsCustomerByEmail(customer.getEmail())){
+            System.out.println("test");
+        }
+
         return customerRepository.save(customer);
     }
 
