@@ -1,5 +1,9 @@
 package com.example.demo.customer;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(code = HttpStatus.CONFLICT)
 public class EmailExistException extends Throwable {
 
     String message;

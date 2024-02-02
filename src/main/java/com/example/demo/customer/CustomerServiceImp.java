@@ -14,7 +14,7 @@ public class CustomerServiceImp implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> getAllCusotmers(){
+    public List<Customer> getAllCustomer(){
         return customerRepository.findAll();
     }
 
@@ -29,8 +29,7 @@ public class CustomerServiceImp implements CustomerService {
     public Customer CreateCustomer(Customer customer) throws EmailExistException {
 
         if(customerRepository.existsCustomerByEmail(customer.getName())){
-            System.out.println("This email already exist");
-            throw new EmailExistException("Po Kari po");
+            throw new EmailExistException("Email already exist.");
 
         }
         return customerRepository.save(customer);

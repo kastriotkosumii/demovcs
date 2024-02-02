@@ -29,7 +29,7 @@ public class CustomerController {
 
     @GetMapping
     public List<Customer> getAllCustomers(){
-        return customerServiceImp.getAllCusotmers();
+        return customerServiceImp.getAllCustomer();
     }
 
     @GetMapping("/{CustomerID}")
@@ -37,13 +37,15 @@ public class CustomerController {
         return customerServiceImp.getCustomerById(id);
     }
 
-    @DeleteMapping("/{CusomerID}")
-    public void deleteCustomerById(@PathVariable("CusomerID") Integer id){
+
+
+    @DeleteMapping("/{CustomerID}")
+    public void deleteCustomerById(@PathVariable("CustomerID") Integer id){
         customerServiceImp.deleteCustomerById(id);
     }
     
     @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) throws Exception {
+    public Customer createCustomer(@RequestBody Customer customer) throws EmailExistException {
         return customerServiceImp.CreateCustomer(customer);
     }
     

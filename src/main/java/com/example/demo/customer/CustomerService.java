@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface CustomerService {
 
-    List<Customer> getAllCusotmers();
+    List<Customer> getAllCustomer();
 
     Optional<Customer> getCustomerById(Integer id);
 
