@@ -32,7 +32,7 @@ public class CustomerController {
         return customerService.getAllCusotmers();
     }
 
-    @GetMapping("{CustomerID}")
+    @GetMapping("/{CustomerID}")
     public Optional<Customer> getCustomerById(@PathVariable("CustomerID") Integer id) {
         return customerService.getCustomerById(id);
     }
