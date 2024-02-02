@@ -31,8 +31,8 @@ public class CustomerServiceImp implements CustomerService {
         if(customerRepository.existsCustomerByEmail(customer.getName())){
             System.out.println("This email already exist");
             throw new EmailExistException("Po Kari po");
-        }
 
+        }
         return customerRepository.save(customer);
     }
 
