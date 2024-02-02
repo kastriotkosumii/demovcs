@@ -13,6 +13,6 @@ public interface CustomerService {
 
     Customer createCustomer(Customer customer) throws EmailExistException;
 
-    Customer updateCustomer(Customer customer) throws Exception;
+    Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
 
 }

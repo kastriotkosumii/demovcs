@@ -36,9 +36,9 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Customer c) throws Exception {
-        Optional<Customer> customer = customerRepository.findById(c.getId());
-
+    public Customer updateCustomer(Customer c) throws CustomerNotFoundException {
+        customerRepository.findById(c.getId())
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found!"));
         return customerRepository.save(c);
 
     }
