@@ -43,7 +43,7 @@ public class CustomerController {
     }
     
     @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) throws Exception {
+    public Customer createCustomer(@RequestBody Customer customer) throws EmailExistException {
         return customerServiceImp.CreateCustomer(customer);
     }
     
