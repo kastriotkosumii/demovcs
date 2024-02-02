@@ -29,7 +29,7 @@ public class CustomerController {
 
     @GetMapping
     public List<Customer> getAllCustomers(){
-        return customerServiceImp.getAllCusotmers();
+        return customerServiceImp.getAllCustomer();
     }
 
     @GetMapping("/{CustomerID}")

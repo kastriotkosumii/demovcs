@@ -14,7 +14,7 @@ public class CustomerServiceImp implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> getAllCusotmers(){
+    public List<Customer> getAllCustomer(){
         return customerRepository.findAll();
     }
 
