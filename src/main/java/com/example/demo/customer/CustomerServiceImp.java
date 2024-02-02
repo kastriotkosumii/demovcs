@@ -26,13 +26,15 @@ public class CustomerServiceImp implements CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public Customer CreateCustomer(Customer customer){
+    public Customer CreateCustomer(Customer customer) throws EmailExistException {
 
-        if(customerRepository.existsCustomerByEmail(customer.getEmail())){
-            System.out.println("test");
+        if(customerRepository.existsCustomerByEmail(customer.getName())){
+            System.out.println("This email already exist");
+            throw new EmailExistException("Po Kari po");
+
         }
-
         return customerRepository.save(customer);
     }
+
 
 }

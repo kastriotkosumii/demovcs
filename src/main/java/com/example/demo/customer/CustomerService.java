@@ -11,5 +11,6 @@ public interface CustomerService {
 
     void deleteCustomerById(Integer id);
 
-    Customer CreateCustomer(Customer customer);
+    Customer CreateCustomer(Customer customer) throws EmailExistException;
+
 }

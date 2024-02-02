@@ -43,7 +43,7 @@ public class CustomerController {
     }
     
     @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
+    public Customer createCustomer(@RequestBody Customer customer) throws Exception {
         return customerServiceImp.CreateCustomer(customer);
     }
     
