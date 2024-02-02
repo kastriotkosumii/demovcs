@@ -27,22 +27,22 @@ public class CustomerController {
         customerService = cs;
     }
 
-    @GetMapping
+    @GetMapping("/customer")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCusotmers();
     }
 
-    @GetMapping("{CustomerID}")
+    @GetMapping("/customer/{CustomerID}")
     public Optional<Customer> getCustomerById(@PathVariable("CustomerID") Integer id) {
         return customerService.getCustomerById(id);
     }
 
-    @DeleteMapping("/{CusomerID}")
+    @DeleteMapping("/customer/{CusomerID}")
     public void deleteCustomerById(@PathVariable("CusomerID") Integer id){
         customerService.deleteCustomerById(id);
     }
     
-    @PostMapping
+    @PostMapping("/customer")
     public Customer createCustomer(@RequestBody Customer customer) {
         return customerService.CreateCustomer(customer);
     }
