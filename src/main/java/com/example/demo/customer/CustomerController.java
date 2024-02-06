@@ -23,14 +23,14 @@ public class CustomerController {
     }
 
     @GetMapping("/{CustomerID}")
-    public Optional<Customer> getCustomerById(@PathVariable("CustomerID") Integer id) {
+    public Optional<Customer> getCustomerById(@PathVariable("CustomerID") Long id) {
         return customerServiceImp.getCustomerById(id);
     }
 
 
 
     @DeleteMapping("/{CustomerID}")
-    public void deleteCustomerById(@PathVariable("CustomerID") Integer id){
+    public void deleteCustomerById(@PathVariable("CustomerID") Long id){
         customerServiceImp.deleteCustomerById(id);
     }
     

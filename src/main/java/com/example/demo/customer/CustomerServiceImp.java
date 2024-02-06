@@ -20,11 +20,11 @@ public class CustomerServiceImp implements CustomerService {
         return customerRepository.findAll();
     }
 
-    public Optional<Customer> getCustomerById(Integer id){
+    public Optional<Customer> getCustomerById(Long id){
         return customerRepository.findById(id);
     }
 
-    public void deleteCustomerById(Integer id){
+    public void deleteCustomerById(Long id){
         customerRepository.deleteById(id);
     }
 

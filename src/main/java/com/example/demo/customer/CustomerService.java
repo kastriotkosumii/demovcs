@@ -10,9 +10,9 @@ public interface CustomerService {
 
     List<Customer> getAllCustomer();
 
-    Optional<Customer> getCustomerById(Integer id);
+    Optional<Customer> getCustomerById(Long id);
 
-    void deleteCustomerById(Integer id);
+    void deleteCustomerById(Long id);
 
     Customer createCustomer(Customer customer) throws EmailExistException;
 
