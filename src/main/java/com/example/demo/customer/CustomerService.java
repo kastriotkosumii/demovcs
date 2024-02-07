@@ -1,4 +1,5 @@
 package com.example.demo.customer;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public class CustomerService {
 
     private final CustomerDAO CustomerDAO;
 
-    public CustomerService(CustomerDAO customerDAO) {
+    public CustomerService(@Qualifier("jdbc") CustomerDAO customerDAO) {
         CustomerDAO = customerDAO;
     }
 
