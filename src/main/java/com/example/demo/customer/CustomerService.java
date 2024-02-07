@@ -1,21 +1,20 @@
 package com.example.demo.customer;
-
-import com.example.demo.customer.Exception.CustomerNotFoundException;
-import com.example.demo.customer.Exception.EmailExistException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface CustomerService {
 
-    List<Customer> getAllCustomer();
+@Service
+public class CustomerService {
 
-    Optional<Customer> getCustomerById(Long id);
+    private final CustomerDAO CustomerDAO;
 
-    void deleteCustomerById(Long id);
+    public CustomerService(CustomerDAO customerDAO) {
+        CustomerDAO = customerDAO;
+    }
 
-    Customer createCustomer(Customer customer) throws EmailExistException;
-
-    Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
+    public List<Customer> getAllCustomer(){
+        return CustomerDAO.selectAllCustomers();
+    }
 
 }
