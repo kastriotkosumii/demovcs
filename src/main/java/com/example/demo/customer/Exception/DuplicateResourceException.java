@@ -4,10 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.CONFLICT)
-public class EmailExistException extends Throwable {
+public class DuplicateResourceException extends RuntimeException {
 
-    String message;
-    public EmailExistException(String message) {
-        this.message = message;
+    public DuplicateResourceException(String message) {
+        super(message);
     }
 }

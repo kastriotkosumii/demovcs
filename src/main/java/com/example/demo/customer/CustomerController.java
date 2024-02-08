@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.customer.Exception.ResourceNotFoundException;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -30,4 +29,10 @@ public class CustomerController {
     public Customer getCustomer(@PathVariable("customerId") Long id) throws ResourceNotFoundException{
         return customerService.getCustomer(id);
     }
+
+    @PostMapping()
+    public void regisCustomer(@RequestBody CustomerRegistrationRequest CustomerRegistrationRequest) {
+        customerService.addCustomer(CustomerRegistrationRequest);
+    }
+    
 }
