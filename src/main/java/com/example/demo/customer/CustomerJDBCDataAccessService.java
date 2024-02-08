@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("jdbc")
 public class CustomerJDBCDataAccessService implements CustomerDAO {
@@ -23,5 +24,11 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
                 """;
 
         return jdbcTemplate.query(sql, customerRowMapper);
+    }
+
+    @Override
+    public Optional<Customer> selectCustomerById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'selectCustomerById'");
     }
 }

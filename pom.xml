@@ -78,6 +78,12 @@
      <artifactId>lakefs-spark-examples-301_2.12</artifactId>
      <version>0.10.0</version>
    </dependency>
+ 
+   <dependency>
+     <groupId>com.commercetools.sunrise</groupId>
+     <artifactId>my-account_2.11</artifactId>
+     <version>0.21.0</version>
+   </dependency>
  </dependencies>
 
 	<build>
