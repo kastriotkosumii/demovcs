@@ -43,4 +43,10 @@ public class CustomerService {
         return customerDAO.insertCustomer(customer);
     }
 
+    public void deleteCustomer(Long id) throws ResourceNotFoundException{
+        if(!customerDAO.exsitsPersonWithId(id))
+            throw new ResourceNotFoundException("Customer with id "+id+" not found!");
+        customerDAO.deleteCustomer(id);
+    }
+
 }

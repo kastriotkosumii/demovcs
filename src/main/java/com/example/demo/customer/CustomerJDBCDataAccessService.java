@@ -43,4 +43,16 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'existsPersonWithEmail'");
     }
+
+    @Override
+    public void deleteCustomer(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteCustomer'");
+    }
+
+    @Override
+    public boolean exsitsPersonWithId(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'exsitsPersonWithId'");
+    }
 }
