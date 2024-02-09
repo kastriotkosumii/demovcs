@@ -28,37 +28,99 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
 
     @Override
     public Optional<Customer> selectCustomerById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectCustomerById'");
+
+        var sql = """
+                Select * from customer where id = ?;
+                """;
+
+        return jdbcTemplate.query(sql, customerRowMapper, id)
+                .stream()
+                .findFirst();
+
     }
 
     @Override
     public Customer insertCustomer(Customer customer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertCustomer'");
+        var sql = """
+                insert into customer (name, email, age) values (?,?,?);
+                """;
+
+        int result = jdbcTemplate.update(
+            sql,
+            customer.getName(),
+            customer.getEmail(),
+            customer.getAge() 
+        );
+
+        System.out.println("Insert Customer result " + result);
+        return customer;
     }
 
     @Override
     public boolean existsPersonWithEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsPersonWithEmail'");
+        
+        var sql = """
+                select count(id) 
+                from customer 
+                where email = ?;
+                """;
+        
+        Long count = jdbcTemplate.queryForObject(sql, Long.class, email);
+
+        return count != null && count > 0;
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCustomer'");
+        var sql = """
+                DELETE
+                FROM customer
+                WHERE id = ?
+                """;
+        int result = jdbcTemplate.update(sql, id);
+        System.out.println("deleteCustomerById result = " + result);
     }
 
     @Override
     public boolean exsitsPersonWithId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exsitsPersonWithId'");
+        var sql = """
+                SELECT count(id)
+                FROM customer
+                WHERE id = ?
+                """;
+
+        Long count = jdbcTemplate.queryForObject(sql, Long.class, id);
+
+        return count != null && count > 0;
     }
 
     @Override
     public void updateCustomer(Customer customer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCustomer'");
+        if (customer.getName() != null) {
+            String sql = "UPDATE customer SET name = ? WHERE id = ?";
+            int result = jdbcTemplate.update(
+                    sql,
+                    customer.getName(),
+                    customer.getId()
+            );
+            System.out.println("update customer name result = " + result);
+        }
+        if (customer.getAge() != null) {
+            String sql = "UPDATE customer SET age = ? WHERE id = ?";
+            int result = jdbcTemplate.update(
+                    sql,
+                    customer.getAge(),
+                    customer.getId()
+            );
+            System.out.println("update customer age result = " + result);
+        }
+        if (customer.getEmail() != null) {
+            String sql = "UPDATE customer SET email = ? WHERE id = ?";
+            int result = jdbcTemplate.update(
+                    sql,
+                    customer.getEmail(),
+                    customer.getId());
+            System.out.println("update customer email result = " + result);
+        }
     }
 }
