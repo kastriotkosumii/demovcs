@@ -44,5 +44,11 @@ public class CustomerJPADataAccessService implements CustomerDAO{
     @Override
     public boolean exsitsPersonWithId(Long id) {
         return customerRepository.findById(id).isPresent();
+        //or we can use customerRepository.existsCustomerById(id);
+    }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        customerRepository.save(customer);
     }
 }

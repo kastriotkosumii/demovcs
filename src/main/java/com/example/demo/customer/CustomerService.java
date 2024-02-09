@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.customer.Exception.ResourceNotFoundException;
 import com.example.demo.customer.Exception.DuplicateResourceException;
-
+import com.example.demo.customer.Exception.RequestValidationException;
 
 import java.util.List;
 
@@ -47,6 +47,40 @@ public class CustomerService {
         if(!customerDAO.exsitsPersonWithId(id))
             throw new ResourceNotFoundException("Customer with id "+id+" not found!");
         customerDAO.deleteCustomer(id);
+    }
+
+    public void updateCustomer(Long customerId,
+                               CustomerUpdateRequest updateRequest) {
+        // TODO: for JPA use .getReferenceById(customerId) as it does does not bring object into memory and instead a reference
+        Customer customer = getCustomer(customerId);
+
+        boolean changes = false;
+
+        if (updateRequest.name() != null && !updateRequest.name().equals(customer.getName())) {
+            customer.setName(updateRequest.name());
+            changes = true;
+        }
+
+        if (updateRequest.age() != null && !updateRequest.age().equals(customer.getAge())) {
+            customer.setAge(updateRequest.age());
+            changes = true;
+        }
+
+        if (updateRequest.email() != null && !updateRequest.email().equals(customer.getEmail())) {
+            if (customerDAO.existsPersonWithEmail(updateRequest.email())) {
+                throw new DuplicateResourceException(
+                        "email already taken"
+                );
+            }
+            customer.setEmail(updateRequest.email());
+            changes = true;
+        }
+
+        if (!changes) {
+           throw new RequestValidationException("no data changes found");
+        }
+
+        customerDAO.updateCustomer(customer);
     }
 
 }
