@@ -2,8 +2,6 @@ package com.example.demo.customer;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.customer.Exception.ResourceNotFoundException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +25,8 @@ public class CustomerJPADataAccessService implements CustomerDAO{
     }
 
     @Override
-    public Customer insertCustomer(Customer customer) {
-        return customerRepository.save(customer);
+    public void insertCustomer(Customer customer) {
+        customerRepository.save(customer);
     }
 
     @Override
@@ -42,7 +40,7 @@ public class CustomerJPADataAccessService implements CustomerDAO{
     }
 
     @Override
-    public boolean exsitsPersonWithId(Long id) {
+    public boolean existsCustomerWithId(Long id) {
         return customerRepository.findById(id).isPresent();
         //or we can use customerRepository.existsCustomerById(id);
     }

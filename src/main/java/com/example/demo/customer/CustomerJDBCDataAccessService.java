@@ -40,7 +40,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
     }
 
     @Override
-    public Customer insertCustomer(Customer customer) {
+    public void insertCustomer(Customer customer) {
         var sql = """
                 insert into customer (name, email, age) values (?,?,?);
                 """;
@@ -53,7 +53,6 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
         );
 
         System.out.println("Insert Customer result " + result);
-        return customer;
     }
 
     @Override
@@ -82,7 +81,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
     }
 
     @Override
-    public boolean exsitsPersonWithId(Long id) {
+    public boolean existsCustomerWithId(Long id) {
         var sql = """
                 SELECT count(id)
                 FROM customer
