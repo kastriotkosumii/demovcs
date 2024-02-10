@@ -27,11 +27,14 @@ public class CustomerService {
         .orElseThrow(()-> new ResourceNotFoundException("Customer not foudn!"));
     }
 
-    public Customer addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
-        
+    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
+
+        // check if email exists
         String email = customerRegistrationRequest.email();
-        if(customerDAO.existsPersonWithEmail(email)){
-            throw new DuplicateResourceException("Email already taken!");
+        if (customerDAO.existsCustomerWithEmail(email)) {
+            throw new DuplicateResourceException(
+                    "email already taken"
+            );
         }
 
         Customer customer = new Customer(
@@ -40,7 +43,7 @@ public class CustomerService {
             customerRegistrationRequest.age()
         );
 
-        return customerDAO.insertCustomer(customer);
+        customerDAO.insertCustomer(customer);
     }
 
     public void deleteCustomer(Long id) throws ResourceNotFoundException{
@@ -67,7 +70,7 @@ public class CustomerService {
         }
 
         if (updateRequest.email() != null && !updateRequest.email().equals(customer.getEmail())) {
-            if (customerDAO.existsPersonWithEmail(updateRequest.email())) {
+            if (customerDAO.existsCustomerWithEmail(updateRequest.email())) {
                 throw new DuplicateResourceException(
                         "email already taken"
                 );
