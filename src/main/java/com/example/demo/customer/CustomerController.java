@@ -8,8 +8,6 @@ import com.example.demo.customer.Exception.ResourceNotFoundException;
 import java.util.List;
 
 
-
-
 @RequestMapping(path = "api/v1/customers")
 @RestController
 public class CustomerController {
