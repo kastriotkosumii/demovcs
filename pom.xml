@@ -15,6 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<docker.username>ismajlbina</docker.username>
+		<docker.image.name>demo-api</docker.image.name>
 	</properties>
 	<dependencies>
 
@@ -181,7 +183,21 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.0</version>
+				<configuration>
+					<to>
+						<image>docker.io/${docker.username}/${docker.image.name}:${project.version}</image>
+						<tags>
+							<tag>latest</tag>
+						</tags>
+					</to>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
 </project>
+
