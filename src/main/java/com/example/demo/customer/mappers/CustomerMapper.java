@@ -10,7 +10,7 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
 
     @Override
     public CustomerDto toDto(Customer customer){
-        return new CustomerDto(customer.getName(), customer.getEmail(), customer.getAge());
+        return new CustomerDto(customer.getId(), customer.getName(), customer.getEmail(), customer.getAge());
     }
 
     @Override

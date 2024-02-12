@@ -25,8 +25,9 @@ public class CustomerService {
         return customerDAO.selectAllCustomers().stream().map(customerMapper::toDto).toList();
     }
 
-    public Customer getCustomer(Long id) throws ResourceNotFoundException{
+    public CustomerDto getCustomer(Long id) throws ResourceNotFoundException{
         return customerDAO.selectCustomerById(id)
+        .map(customerMapper::toDto)
         .orElseThrow(()-> new ResourceNotFoundException("Customer not foudn!"));
     }
 
@@ -58,7 +59,10 @@ public class CustomerService {
     public void updateCustomer(Long customerId,
                                CustomerUpdateRequest updateRequest) {
         
-        Customer customer = getCustomer(customerId);
+        Customer customer =  customerDAO.selectCustomerById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                    "customer with id [%s] not found".formatted(customerId))
+                );
 
         boolean changes = false;
 

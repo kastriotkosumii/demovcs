@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     @GetMapping("{customerId}")
-    public Customer getCustomer(@PathVariable("customerId") Long id) throws ResourceNotFoundException{
+    public CustomerDto getCustomer(@PathVariable("customerId") Long id) throws ResourceNotFoundException{
         return customerService.getCustomer(id);
     }
 
