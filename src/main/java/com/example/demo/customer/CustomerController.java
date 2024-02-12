@@ -1,6 +1,5 @@
 package com.example.demo.customer;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.customer.Exception.ResourceNotFoundException;
@@ -19,7 +18,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getAllCustomers(){
+    public List<CustomerDto> getAllCustomers(){
         return customerService.getAllCustomer();
     }
 

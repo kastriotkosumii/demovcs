@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.customer.Exception.ResourceNotFoundException;
+import com.example.demo.customer.mappers.CustomerMapper;
 import com.example.demo.customer.Exception.DuplicateResourceException;
 import com.example.demo.customer.Exception.RequestValidationException;
 
@@ -13,13 +14,15 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerDAO customerDAO;
+    private final CustomerMapper customerMapper;
 
-    public CustomerService(@Qualifier("jdbc") CustomerDAO customerDAO) {
+    public CustomerService(@Qualifier("jpa") CustomerDAO customerDAO, CustomerMapper customerMapper) {
         this.customerDAO = customerDAO;
+        this.customerMapper = customerMapper;
     }
 
-    public List<Customer> getAllCustomer(){
-        return customerDAO.selectAllCustomers();
+    public List<CustomerDto> getAllCustomer(){
+        return customerDAO.selectAllCustomers().stream().map(customerMapper::toDto).toList();
     }
 
     public Customer getCustomer(Long id) throws ResourceNotFoundException{
@@ -54,7 +57,7 @@ public class CustomerService {
 
     public void updateCustomer(Long customerId,
                                CustomerUpdateRequest updateRequest) {
-        // TODO: for JPA use .getReferenceById(customerId) as it does does not bring object into memory and instead a reference
+        
         Customer customer = getCustomer(customerId);
 
         boolean changes = false;
