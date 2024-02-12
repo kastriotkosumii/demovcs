@@ -54,7 +54,6 @@ public class CustomerService {
 
     public void updateCustomer(Long customerId,
                                CustomerUpdateRequest updateRequest) {
-        // TODO: for JPA use .getReferenceById(customerId) as it does does not bring object into memory and instead a reference
         Customer customer = getCustomer(customerId);
 
         boolean changes = false;
