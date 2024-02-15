@@ -48,10 +48,18 @@ public class Customer {
     )
     private Integer age;
 
-    public Customer(String name, String email, Integer age) {
+    @Column(
+        nullable = false
+    )
+    
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    public Customer(String name, String email, Integer age, Gender gender) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.gender = gender;
     }
 
 }
