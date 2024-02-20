@@ -1,3 +1,4 @@
+/*
 {
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
@@ -16,11 +17,11 @@
       "environment": [
         {
           "name": "SPRING_DATASOURCE_URL",
-          "value": "jdbc:postgresql://awseb-e-6ksqaqs2kv-stack-awsebrdsdatabase-abrb2g5ilfht.clc2ewo4wcx5.eu-central-1.rds.amazonaws.com:5432/customer"
+          "value": "jdbc:postgresql://db_inAWS:5432/customer"
 
 
         }
       ]
     }
   ]
-}
+}*/
