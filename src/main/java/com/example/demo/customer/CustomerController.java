@@ -1,8 +1,11 @@
 package com.example.demo.customer;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 
 import com.example.demo.customer.Exception.ResourceNotFoundException;
+import com.example.demo.jwt.JWTUtil;
 
 import java.util.List;
 
@@ -12,9 +15,11 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final JWTUtil jwtUtil;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, JWTUtil jwtUtil) {
         this.customerService = customerService;
+        this.jwtUtil = jwtUtil;
     }
 
     @GetMapping
@@ -28,8 +33,12 @@ public class CustomerController {
     }
 
     @PostMapping()
-    public void regisCustomer(@RequestBody CustomerRegistrationRequest CustomerRegistrationRequest) {
+    public ResponseEntity<?> regisCustomer(@RequestBody CustomerRegistrationRequest CustomerRegistrationRequest) {
         customerService.addCustomer(CustomerRegistrationRequest);
+        String token = jwtUtil.issueToken(CustomerRegistrationRequest.email(), "ROLE_USER");
+        return ResponseEntity.ok()
+                .header(HttpHeaders.AUTHORIZATION, token)
+                .build();
     }
 
     @DeleteMapping("{CustomerId}")
