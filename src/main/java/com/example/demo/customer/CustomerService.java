@@ -1,5 +1,6 @@
 package com.example.demo.customer;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.customer.Exception.ResourceNotFoundException;
@@ -15,10 +16,12 @@ public class CustomerService {
 
     private final CustomerDAO customerDAO;
     private final CustomerMapper customerMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public CustomerService(@Qualifier("jpa") CustomerDAO customerDAO, CustomerMapper customerMapper) {
+    public CustomerService(@Qualifier("jpa") CustomerDAO customerDAO, CustomerMapper customerMapper, PasswordEncoder passwordEncoder) {
         this.customerDAO = customerDAO;
         this.customerMapper = customerMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<CustomerDto> getAllCustomer(){
@@ -44,6 +47,7 @@ public class CustomerService {
         Customer customer = new Customer(
             customerRegistrationRequest.name(),
             customerRegistrationRequest.email(),
+            passwordEncoder.encode(customerRegistrationRequest.password()),  
             customerRegistrationRequest.age(),
             customerRegistrationRequest.gender()
         );

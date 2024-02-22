@@ -42,13 +42,14 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
     @Override
     public void insertCustomer(Customer customer) {
         var sql = """
-                insert into customer (name, email, age, gender) values (?,?,?,?);
+                insert into customer (name, email, password, age, gender) values (?,?,?,?,?);
                 """;
 
         int result = jdbcTemplate.update(
             sql,
             customer.getName(),
             customer.getEmail(),
+            customer.getPassword(),
             customer.getAge(),
             customer.getGender()
         );
@@ -123,4 +124,17 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
             System.out.println("update customer email result = " + result);
         }
     }
+
+    @Override
+    public Optional<Customer> selectUserByEmail(String email){
+
+        var sql = """
+                Select * from customer where email = ?;
+                """;
+
+        return jdbcTemplate.query(sql, customerRowMapper, email)
+                .stream()
+                .findFirst();
+    }
+
 }

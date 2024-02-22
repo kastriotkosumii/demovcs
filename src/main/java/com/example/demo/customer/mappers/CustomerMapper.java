@@ -15,7 +15,7 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
 
     @Override
     public Customer toEntity(CustomerDto customerDto){
-        return new Customer(customerDto.name(), customerDto.email(), customerDto.age(), customerDto.gender());
+        return new Customer(customerDto.name(), customerDto.email(), "password", customerDto.age(), customerDto.gender());
     }
     
 }

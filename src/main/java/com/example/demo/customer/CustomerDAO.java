@@ -11,4 +11,5 @@ public interface CustomerDAO {
     void deleteCustomer(Long id);
     boolean existsCustomerWithId(Long id);
     void updateCustomer(Customer customer);
+    Optional<Customer> selectUserByEmail(String email);
 }
