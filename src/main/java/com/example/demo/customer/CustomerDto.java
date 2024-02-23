@@ -1,5 +1,7 @@
 package com.example.demo.customer;
 
-public record CustomerDto(Long id, String name, String email, Integer age, Gender gender) {
+import java.util.List;
+
+public record CustomerDto(Long id, String name, String email, List<String> roles ,Integer age, Gender gender, String username) {
     
 }
