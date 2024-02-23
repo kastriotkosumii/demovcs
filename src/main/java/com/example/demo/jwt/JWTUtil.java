@@ -27,7 +27,7 @@ public class JWTUtil {
     
     public String issueToken(String subject, Map<String, Object> claims){
         Date now = new Date();
-        Date expirationDate = new Date(now.getTime() + 1800000);
+        Date expirationDate = new Date(now.getTime() + 1800000);//Now plus 1800000 milisecons (30 min)
 
         String token = Jwts
                 .builder()
