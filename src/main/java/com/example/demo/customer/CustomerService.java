@@ -31,7 +31,7 @@ public class CustomerService {
     public CustomerDto getCustomer(Long id) throws ResourceNotFoundException{
         return customerDAO.selectCustomerById(id)
         .map(customerMapper::toDto)
-        .orElseThrow(()-> new ResourceNotFoundException("Customer not foudn!"));
+        .orElseThrow(()-> new ResourceNotFoundException("Customer not found!"));
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
