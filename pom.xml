@@ -17,7 +17,7 @@
 		<java.version>17</java.version>
 		<docker.username>ismajlbina</docker.username>
 		<docker.image.name>demo-api</docker.image.name>
-		<jwt.version>0.12.5</jwt.version>
+		<jwt.version>0.11.5</jwt.version>
 	</properties>
 	<dependencies>
 
