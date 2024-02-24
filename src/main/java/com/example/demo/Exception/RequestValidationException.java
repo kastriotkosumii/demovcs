@@ -1,4 +1,4 @@
-package com.example.demo.customer.Exception;
+package com.example.demo.Exception;
 
 public class RequestValidationException extends RuntimeException {
 

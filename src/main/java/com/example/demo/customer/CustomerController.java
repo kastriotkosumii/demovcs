@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 
-import com.example.demo.customer.Exception.ResourceNotFoundException;
+import com.example.demo.Exception.ResourceNotFoundException;
 import com.example.demo.jwt.JWTUtil;
 
 import java.util.List;

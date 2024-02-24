@@ -3,10 +3,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.customer.Exception.ResourceNotFoundException;
+import com.example.demo.Exception.ResourceNotFoundException;
 import com.example.demo.customer.mappers.CustomerMapper;
-import com.example.demo.customer.Exception.DuplicateResourceException;
-import com.example.demo.customer.Exception.RequestValidationException;
+import com.example.demo.Exception.DuplicateResourceException;
+import com.example.demo.Exception.RequestValidationException;
 
 import java.util.List;
 
