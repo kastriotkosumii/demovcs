@@ -2,6 +2,7 @@ package com.example.demo.auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.customer.Customer;
@@ -25,8 +26,8 @@ public class AuthService {
     }
 
     public AuthResponse login(AuthRequest authRequest){
-        
-        var authentication = authenticationManager.authenticate(
+
+        Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 authRequest.username(), authRequest.password())
         );
@@ -37,5 +38,4 @@ public class AuthService {
         
         return new AuthResponse(customerDto, token);
     }
-    
 }
