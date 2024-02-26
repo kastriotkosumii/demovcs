@@ -1,11 +1,14 @@
 package com.example.demo.customer;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.Exception.ResourceNotFoundException;
 import com.example.demo.jwt.JWTUtil;
+import com.example.demo.s3.S3BucketStorageService;
 
 import java.util.List;
 
@@ -16,10 +19,14 @@ public class CustomerController {
 
     private final CustomerService customerService;
     private final JWTUtil jwtUtil;
+    private final S3BucketStorageService s3BucketStorageService;
 
-    public CustomerController(CustomerService customerService, JWTUtil jwtUtil) {
+    public CustomerController(CustomerService customerService, 
+                            JWTUtil jwtUtil,
+                            S3BucketStorageService s3BucketStorageService) {
         this.customerService = customerService;
         this.jwtUtil = jwtUtil;
+        this.s3BucketStorageService = s3BucketStorageService;
     }
 
     @GetMapping
@@ -49,6 +56,14 @@ public class CustomerController {
     @PutMapping("{CustomerId}")
     public void updateCustomer(@PathVariable("CustomerId") Long id, @RequestBody CustomerUpdateRequest customerUpdateRequest){
         customerService.updateCustomer(id, customerUpdateRequest);
+    }
+
+    
+
+    @PostMapping("/file/upload")
+    public ResponseEntity<String> uploadFile(@RequestParam("fileName") String fileName,
+                                             @RequestParam("file") MultipartFile file) {
+        return new ResponseEntity<>(s3BucketStorageService.uploadFile(fileName, file), HttpStatus.OK);
     }
     
 }

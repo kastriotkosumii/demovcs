@@ -127,6 +127,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.12.666</version>
+		</dependency>
+
 	   <dependency>
 		 <groupId>io.lakefs</groupId>
 		 <artifactId>lakefs-spark-examples-301_2.12</artifactId>
