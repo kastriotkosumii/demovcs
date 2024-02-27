@@ -58,8 +58,6 @@ public class CustomerController {
         customerService.updateCustomer(id, customerUpdateRequest);
     }
 
-    
-
     @PostMapping("/file/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("fileName") String fileName,
                                              @RequestParam("file") MultipartFile file) {
