@@ -5,6 +5,8 @@ import com.example.demo.payload.request.customer.CustomerUpdateRequest;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.model.Customer;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -102,6 +104,14 @@ public class CustomerService {
         }
 
         customerDAO.updateCustomer(customer);
+    }
+
+    public Page<CustomerDto> getAllCustomerpag(Integer pageNumber, Integer pageSize, String sort){
+        List<CustomerDto> allItems =  customerDAO.getCustomerPagination(pageNumber, 
+                                                pageSize, 
+                                                sort).stream().map(customerMapper::toDto).toList();
+
+        return new PageImpl<>(allItems);
     }
 
 }

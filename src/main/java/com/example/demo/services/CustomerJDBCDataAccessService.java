@@ -3,6 +3,8 @@ package com.example.demo.services;
 import com.example.demo.customer.CustomerDAO;
 import com.example.demo.mapper.CustomerRowMapper;
 import com.example.demo.model.Customer;
+
+import org.springframework.data.domain.Page;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -138,6 +140,12 @@ public class CustomerJDBCDataAccessService implements CustomerDAO {
         return jdbcTemplate.query(sql, customerRowMapper, email)
                 .stream()
                 .findFirst();
+    }
+
+    @Override
+    public Page<Customer> getCustomerPagination(Integer pageNumber, Integer pageSize, String sort) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEmployeePagination'");
     }
 
 }

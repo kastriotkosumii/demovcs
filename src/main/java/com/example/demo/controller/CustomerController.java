@@ -5,6 +5,7 @@ import com.example.demo.payload.request.customer.CustomerUpdateRequest;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.services.CustomerService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -55,6 +56,12 @@ public class CustomerController {
     @PutMapping("{CustomerId}")
     public void updateCustomer(@PathVariable("CustomerId") Long id, @RequestBody CustomerUpdateRequest customerUpdateRequest){
         customerService.updateCustomer(id, customerUpdateRequest);
+    }
+
+    @GetMapping("/page/{pageNumber}/{pageSize}/{sort}")
+    public List <CustomerDto> getEmployees(@PathVariable Integer pageNumber, @PathVariable Integer pageSize, @PathVariable String sort) {
+        Page <CustomerDto> data = customerService.getAllCustomerpag(pageNumber, pageSize, sort);
+        return data.getContent();
     }
     
 }

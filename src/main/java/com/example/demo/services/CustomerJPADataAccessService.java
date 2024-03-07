@@ -3,6 +3,11 @@ package com.example.demo.services;
 import com.example.demo.customer.CustomerDAO;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.model.Customer;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,6 +60,21 @@ public class CustomerJPADataAccessService implements CustomerDAO {
 
     @Override
     public Optional<Customer> selectUserByEmail(String email){
+
+
         return customerRepository.findCustomerByEmail(email);
+    }
+
+    @Override
+    public Page<Customer> getCustomerPagination(Integer pageNumber, Integer pageSize, String sort) {
+        Pageable pageable = null;
+        if (sort != null) {
+        // with sorting
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sort);
+        } else {
+        // without sorting
+            pageable = PageRequest.of(pageNumber, pageSize);
+        }
+        return customerRepository.findAll(pageable);
     }
 }
