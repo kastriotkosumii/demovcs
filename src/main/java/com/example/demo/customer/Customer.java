@@ -66,17 +66,26 @@ public class Customer implements UserDetails {
     )
     private String password;
 
-    public Customer(String name, String email, String password, Integer age, Gender gender) {
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public Customer(String name, 
+                    String email, 
+                    String password, 
+                    Integer age, 
+                    Gender gender, 
+                    Role role) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.age = age;
         this.gender = gender;
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

@@ -49,7 +49,8 @@ public class CustomerService {
             customerRegistrationRequest.email(),
             passwordEncoder.encode(customerRegistrationRequest.password()),  
             customerRegistrationRequest.age(),
-            customerRegistrationRequest.gender()
+            customerRegistrationRequest.gender(),
+            customerRegistrationRequest.role()
         );
 
         customerDAO.insertCustomer(customer);

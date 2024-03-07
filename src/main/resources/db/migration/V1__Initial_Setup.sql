@@ -4,5 +4,6 @@ CREATE TABLE customer(
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     age INT NOT NULL,
-    gender TEXT NOT NULL
+    gender TEXT NOT NULL,
+    role TEXT NOT NULL
 );

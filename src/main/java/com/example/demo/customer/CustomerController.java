@@ -3,6 +3,7 @@ package com.example.demo.customer;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.Exception.ResourceNotFoundException;
 import com.example.demo.jwt.JWTUtil;
@@ -27,6 +28,7 @@ public class CustomerController {
         return customerService.getAllCustomer();
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("{customerId}")
     public CustomerDto getCustomer(@PathVariable("customerId") Long id) throws ResourceNotFoundException{
         return customerService.getCustomer(id);

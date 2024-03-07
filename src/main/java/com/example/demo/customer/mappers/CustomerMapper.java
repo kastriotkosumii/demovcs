@@ -16,14 +16,11 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
         return new CustomerDto(
                 customer.getId(), 
                 customer.getName(), 
-                customer.getEmail(), 
-                customer.getAuthorities()
-                        .stream()
-                        .map(GrantedAuthority::getAuthority)
-                        .collect(Collectors.toList()), 
+                customer.getEmail(),
                 customer.getAge(), 
                 customer.getGender(), 
-                customer.getUsername()
+                customer.getUsername(),
+                customer.getRole()
         );
     }
 
@@ -34,7 +31,8 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
                     customerDto.email(), 
                     "password",
                     customerDto.age(), 
-                    customerDto.gender()
+                    customerDto.gender(),
+                    customerDto.role()
         );
     }
     

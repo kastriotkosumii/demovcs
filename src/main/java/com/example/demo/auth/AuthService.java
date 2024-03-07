@@ -34,7 +34,7 @@ public class AuthService {
 
         Customer principal = (Customer) authentication.getPrincipal();
         CustomerDto customerDto = customerMapper.toDto(principal);
-        String token = jwtUtil.issueToken(customerDto.username(), customerDto.roles());
+        String token = jwtUtil.issueToken(customerDto.username(), customerDto.role().name());
         
         return new AuthResponse(customerDto, token);
     }
