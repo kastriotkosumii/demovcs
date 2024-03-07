@@ -1,12 +1,9 @@
-package com.example.demo.customer.mappers;
+package com.example.demo.mapper;
 
-import java.util.stream.Collectors;
-
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.customer.Customer;
-import com.example.demo.customer.CustomerDto;
+import com.example.demo.model.Customer;
+import com.example.demo.dto.CustomerDto;
 
 @Component
 public class CustomerMapper implements Mapper<CustomerDto, Customer >{

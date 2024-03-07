@@ -1,5 +1,9 @@
-package com.example.demo.customer;
+package com.example.demo.controller;
 
+import com.example.demo.payload.request.customer.CustomerRegistrationRequest;
+import com.example.demo.payload.request.customer.CustomerUpdateRequest;
+import com.example.demo.dto.CustomerDto;
+import com.example.demo.services.CustomerService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +41,7 @@ public class CustomerController {
     @PostMapping()
     public ResponseEntity<?> regisCustomer(@RequestBody CustomerRegistrationRequest CustomerRegistrationRequest) {
         customerService.addCustomer(CustomerRegistrationRequest);
-        String token = jwtUtil.issueToken(CustomerRegistrationRequest.email(), "ROLE_USER");
+        String token = jwtUtil.issueToken(CustomerRegistrationRequest.email(), CustomerRegistrationRequest.role().name());
         return ResponseEntity.ok()
                 .header(HttpHeaders.AUTHORIZATION, token)
                 .build();

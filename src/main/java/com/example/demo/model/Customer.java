@@ -1,5 +1,7 @@
-package com.example.demo.customer;
+package com.example.demo.model;
 
+import com.example.demo.model.enums.Gender;
+import com.example.demo.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

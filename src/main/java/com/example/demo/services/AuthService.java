@@ -1,13 +1,15 @@
-package com.example.demo.auth;
+package com.example.demo.services;
 
+import com.example.demo.payload.request.auth.AuthRequest;
+import com.example.demo.payload.response.auth.AuthResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.customer.Customer;
-import com.example.demo.customer.CustomerDto;
-import com.example.demo.customer.mappers.CustomerMapper;
+import com.example.demo.model.Customer;
+import com.example.demo.dto.CustomerDto;
+import com.example.demo.mapper.CustomerMapper;
 import com.example.demo.jwt.JWTUtil;
 
 @Service

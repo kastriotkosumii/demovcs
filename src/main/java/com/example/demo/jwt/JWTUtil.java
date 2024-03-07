@@ -27,9 +27,9 @@ public class JWTUtil {
         return issueToken(subject, Map.of("scopes", scopes));
     }
 
-    public String issueToken(String subject, String scopes){
+/*    public String issueToken(String subject, String scopes){
         return issueToken(subject,Map.of("scopes",scopes));
-    }
+    }*/
     
     public String issueToken(String subject, Map<String, Object> claims){
         Date now = new Date();

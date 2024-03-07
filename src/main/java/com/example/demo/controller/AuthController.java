@@ -1,11 +1,11 @@
-package com.example.demo.auth;
+package com.example.demo.controller;
 
+import com.example.demo.services.AuthService;
+import com.example.demo.payload.request.auth.AuthRequest;
+import com.example.demo.payload.response.auth.AuthResponse;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nimbusds.openid.connect.sdk.AuthenticationResponse;
-
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +23,7 @@ public class AuthController {
     }
     
     @PostMapping("login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest) {
         AuthResponse authResponse = authService.login(authRequest);
 
         return ResponseEntity.ok()

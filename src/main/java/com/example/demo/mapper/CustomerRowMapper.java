@@ -1,5 +1,8 @@
-package com.example.demo.customer;
+package com.example.demo.mapper;
 
+import com.example.demo.model.Customer;
+import com.example.demo.model.enums.Gender;
+import com.example.demo.model.enums.Role;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,7 @@
 package com.example.demo.customer;
 
+import com.example.demo.model.Customer;
+
 import java.util.List;
 import java.util.Optional;
 

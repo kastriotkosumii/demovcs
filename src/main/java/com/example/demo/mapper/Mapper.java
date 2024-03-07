@@ -1,4 +1,4 @@
-package com.example.demo.customer.mappers;
+package com.example.demo.mapper;
 
 public interface Mapper<D, E> {
     D toDto(E entity);

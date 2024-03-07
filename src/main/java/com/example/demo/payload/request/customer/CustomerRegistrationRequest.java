@@ -1,4 +1,7 @@
-package com.example.demo.customer;
+package com.example.demo.payload.request.customer;
+
+import com.example.demo.model.enums.Gender;
+import com.example.demo.model.enums.Role;
 
 public record CustomerRegistrationRequest(
     String name,

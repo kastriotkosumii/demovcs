@@ -1,10 +1,15 @@
-package com.example.demo.customer;
+package com.example.demo.services;
+import com.example.demo.customer.CustomerDAO;
+import com.example.demo.payload.request.customer.CustomerRegistrationRequest;
+import com.example.demo.payload.request.customer.CustomerUpdateRequest;
+import com.example.demo.dto.CustomerDto;
+import com.example.demo.model.Customer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Exception.ResourceNotFoundException;
-import com.example.demo.customer.mappers.CustomerMapper;
+import com.example.demo.mapper.CustomerMapper;
 import com.example.demo.Exception.DuplicateResourceException;
 import com.example.demo.Exception.RequestValidationException;
 

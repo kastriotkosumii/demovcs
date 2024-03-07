@@ -1,5 +1,6 @@
-package com.example.demo.customer;
+package com.example.demo.services;
 
+import com.example.demo.customer.CustomerDAO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

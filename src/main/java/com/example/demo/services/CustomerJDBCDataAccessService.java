@@ -1,5 +1,8 @@
-package com.example.demo.customer;
+package com.example.demo.services;
 
+import com.example.demo.customer.CustomerDAO;
+import com.example.demo.mapper.CustomerRowMapper;
+import com.example.demo.model.Customer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 

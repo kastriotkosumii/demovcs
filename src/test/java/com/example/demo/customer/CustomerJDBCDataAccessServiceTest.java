@@ -1,6 +1,8 @@
 package com.example.demo.customer;
 
 import com.example.demo.AbstractTestcontainers;
+import com.example.demo.mapper.CustomerRowMapper;
+import com.example.demo.services.CustomerJDBCDataAccessService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

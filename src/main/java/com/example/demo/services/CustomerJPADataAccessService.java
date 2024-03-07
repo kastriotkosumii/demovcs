@@ -1,12 +1,15 @@
-package com.example.demo.customer;
+package com.example.demo.services;
 
+import com.example.demo.customer.CustomerDAO;
+import com.example.demo.repository.CustomerRepository;
+import com.example.demo.model.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service("jpa")
-public class CustomerJPADataAccessService implements CustomerDAO{
+public class CustomerJPADataAccessService implements CustomerDAO {
 
     private final CustomerRepository customerRepository;
 
