@@ -39,6 +39,7 @@ public class Customer extends BaseEntity implements UserDetails  {
         strategy = GenerationType.SEQUENCE,
         generator = "customer_id_seq"
     )
+    @Column(name = "customer_id")
     private Long id;
 
     @Column(
@@ -71,12 +72,28 @@ public class Customer extends BaseEntity implements UserDetails  {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Customer(String name, 
-                    String email, 
-                    String password, 
-                    Integer age, 
-                    Gender gender, 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
+    @Column(
+            nullable = true
+    )
+    private List<Product> products;
+
+    public Customer(String name,
+                    String email,
+                    String password,
+                    Integer age,
+                    Gender gender,
                     Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.gender = gender;
+        this.role = role;
+    }
+
+    public Customer(long customer_id, String name, String email, int age, Gender gender, String password, Role role) {
+        this.id = customer_id;
         this.name = name;
         this.email = email;
         this.password = password;

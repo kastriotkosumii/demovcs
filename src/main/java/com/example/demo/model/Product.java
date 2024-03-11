@@ -18,6 +18,7 @@ public class Product extends BaseEntity {
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE
     )
+    @Column(name = "product_id")
     private long id;
 
     @Column(nullable = false)
@@ -27,20 +28,25 @@ public class Product extends BaseEntity {
     private String description;
 
     @Column(nullable = false)
-    private double weight;
+    private Float weight;
 
     @Column(nullable = false)
-    private double height;
+    private Float height;
 
     @Column(nullable = false)
-    private double width;
+    private float width;
 
     @Column(nullable = false)
     private int quantity;
 
     @Column(nullable = false)
-    private double price;
+    private float price;
 
-
-    private String picture;
+    /*
+        Here we are mapping the Product with
+        Customer entity
+    * */
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }
