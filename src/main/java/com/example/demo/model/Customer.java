@@ -27,7 +27,7 @@ import java.util.List;
                         columnNames = "email")
         }
 )
-public class Customer implements UserDetails {
+public class Customer extends BaseEntity implements UserDetails  {
 
     @Id
     @SequenceGenerator(
