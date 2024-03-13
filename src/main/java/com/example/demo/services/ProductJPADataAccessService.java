@@ -28,14 +28,18 @@ public class ProductJPADataAccessService implements ProductDAO{
     }
 
     @Override
-    public void deleteProduct(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCustomer'");
+    public void deleteProductById(Long id) {
+        productRepository.deleteById(id);
     }
 
     @Override
     public void insertProduct(Product product) {
         productRepository.save(product);
+    }
+
+    @Override
+    public boolean existsProductWithId(Long id) {
+        return productRepository.existsProductById(id);
     }
     
 }

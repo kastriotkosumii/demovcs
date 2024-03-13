@@ -8,6 +8,7 @@ import com.example.demo.model.Product;
 public interface ProductDAO {
     List<Product> selectAllProducts();
     Optional<Product> selectProductById(Long id);
-    void deleteProduct(Long id);
+    void deleteProductById(Long id);
     void insertProduct(Product product);
+    boolean existsProductWithId(Long id);
 }

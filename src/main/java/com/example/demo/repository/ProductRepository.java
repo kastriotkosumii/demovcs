@@ -6,4 +6,6 @@ import com.example.demo.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
     
+    Boolean existsProductById(Long id);
+
 }

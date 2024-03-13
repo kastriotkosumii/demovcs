@@ -62,5 +62,11 @@ public class ProductService {
                             .orElseThrow(() -> new ResourceNotFoundException("Product not foundt!"));
     }
 
+    public void deleteProductById(Long id){
+        if(!productDAO.existsProductWithId(id))
+            throw new ResourceNotFoundException("Product not found");
+        productDAO.deleteProductById(id);
+    }
+
     
 }
