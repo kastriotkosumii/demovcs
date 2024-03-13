@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,12 @@ public class ProductJPADataAccessService implements ProductDAO{
 
     @Override
     public List<Product> selectAllProducts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectAllProducts'");
+        return productRepository.findAll();
     }
 
     @Override
-    public Product selectProductById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectProductById'");
+    public Optional<Product> selectProductById(Long id) {
+        return productRepository.findById(id);
     }
 
     @Override
