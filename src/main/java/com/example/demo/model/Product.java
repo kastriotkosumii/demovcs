@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,7 +49,8 @@ public class Product extends BaseEntity {
         Here we are mapping the Product with
         Customer entity
     * */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonBackReference
     private Customer customer;
 }

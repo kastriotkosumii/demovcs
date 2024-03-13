@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import com.example.demo.model.enums.Gender;
 import com.example.demo.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -72,10 +74,11 @@ public class Customer extends BaseEntity implements UserDetails  {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="customer")
     @Column(
             nullable = true
     )
+    @JsonManagedReference
     private List<Product> products;
 
     public Customer(String name,

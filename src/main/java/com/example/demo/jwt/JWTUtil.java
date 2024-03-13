@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -18,6 +17,9 @@ public class JWTUtil {
 
     @Value("${jwt.secret}")
     private String SECRET_KEY;
+
+    @Value("${jwt.expiration}")
+    private Long EXPIRATION;
 
     public String issueToken(String subject) {
         return issueToken(subject, Map.of());
@@ -33,7 +35,7 @@ public class JWTUtil {
     
     public String issueToken(String subject, Map<String, Object> claims){
         Date now = new Date();
-        Date expirationDate = new Date(now.getTime() + 1800000);//Now plus 1800000 milisecons (30 min)
+        Date expirationDate = new Date(now.getTime() + EXPIRATION);//Now plus 1800000 milisecons (30 min)
 
         String token = Jwts
                 .builder()

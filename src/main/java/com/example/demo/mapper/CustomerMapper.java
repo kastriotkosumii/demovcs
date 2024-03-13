@@ -17,7 +17,8 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
                 customer.getAge(), 
                 customer.getGender(), 
                 customer.getUsername(),
-                customer.getRole()
+                customer.getRole(),
+                customer.getProducts()
         );
     }
 
