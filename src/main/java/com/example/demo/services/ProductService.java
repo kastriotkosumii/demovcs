@@ -3,6 +3,9 @@ package com.example.demo.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.Exception.RequestValidationException;
+import com.example.demo.payload.request.customer.CustomerUpdateRequest;
+import com.example.demo.payload.request.product.ProductUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -59,7 +62,7 @@ public class ProductService {
     public ProductDto getProductById(Long id){
         return productDAO.selectProductById(id)
                             .map(productMapper::toDto)
-                            .orElseThrow(() -> new ResourceNotFoundException("Product not foundt!"));
+                            .orElseThrow(() -> new ResourceNotFoundException("Product not found!"));
     }
 
     public void deleteProductById(Long id){
@@ -68,5 +71,59 @@ public class ProductService {
         productDAO.deleteProductById(id);
     }
 
-    
+    public void updateProduct(Long productId,
+                              ProductUpdateRequest updateRequest){
+
+        Product product = productDAO.selectProductById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Product with id [%s] not found".formatted(productId)
+                ));
+
+        boolean changes = false;
+
+        if(updateRequest.name() != null && !updateRequest.name().equals(product.getName())){
+            product.setName(updateRequest.name());
+            changes = true;
+        }
+
+        if(updateRequest.description() != null && !updateRequest.description().equals(product.getDescription())){
+            product.setDescription(updateRequest.description());
+            changes = true;
+        }
+
+        if(updateRequest.weight() != null && !updateRequest.weight().equals(product.getWeight())){
+            product.setWeight(updateRequest.weight());
+            changes = true;
+        }
+
+        if(updateRequest.height() != null && !updateRequest.height().equals(product.getHeight())){
+            product.setHeight(updateRequest.height());
+            changes = true;
+        }
+
+        if(updateRequest.width() != null && !updateRequest.width().equals(product.getWeight())){
+            product.setHeight(updateRequest.height());
+            changes = true;
+        }
+
+        if(updateRequest.quantity() != null && !updateRequest.quantity().equals(product.getQuantity())){
+            product.setQuantity(updateRequest.quantity());
+            changes = true;
+        }
+
+        if(updateRequest.price() != null && !updateRequest.price().equals(product.getPrice())){
+            product.setPrice(updateRequest.price());
+            changes = true;
+        }
+
+        if (!changes) {
+            throw new RequestValidationException("No data changes found");
+        }
+
+
+        productDAO.updateProduct(product);
+
+
+
+    }
 }

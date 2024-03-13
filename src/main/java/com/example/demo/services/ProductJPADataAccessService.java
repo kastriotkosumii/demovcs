@@ -41,5 +41,10 @@ public class ProductJPADataAccessService implements ProductDAO{
     public boolean existsProductWithId(Long id) {
         return productRepository.existsProductById(id);
     }
-    
+
+    @Override
+    public void updateProduct(Product product) {
+        productRepository.save(product);
+    }
+
 }

@@ -37,13 +37,13 @@ public class Product extends BaseEntity {
     private Float height;
 
     @Column(nullable = false)
-    private float width;
+    private Float width;
 
     @Column(nullable = false)
-    private int quantity;
+    private Integer quantity;
 
     @Column(nullable = false)
-    private float price;
+    private Float price;
 
     /*
         Here we are mapping the Product with

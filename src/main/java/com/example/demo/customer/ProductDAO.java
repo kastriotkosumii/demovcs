@@ -11,4 +11,5 @@ public interface ProductDAO {
     void deleteProductById(Long id);
     void insertProduct(Product product);
     boolean existsProductWithId(Long id);
+    void updateProduct(Product product);
 }
