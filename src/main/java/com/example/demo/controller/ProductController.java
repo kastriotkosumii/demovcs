@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ProductDto;
 import com.example.demo.payload.request.product.ProductRegistrationRequest;
+import com.example.demo.payload.request.product.ProductUpdateRequest;
 import com.example.demo.services.ProductService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -40,7 +42,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public ProductDto getMethodName(@PathVariable Long id) {
+    public ProductDto getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
 
@@ -49,5 +51,9 @@ public class ProductController {
         productService.deleteProductById(id);
     }
     
+    @PutMapping("{id}")
+    public void putMethodName(@PathVariable Long id, @RequestBody ProductUpdateRequest entity) {
+        productService.updateProduct(id, entity);;
+    }
     
 }

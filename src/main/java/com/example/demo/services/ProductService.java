@@ -120,10 +120,6 @@ public class ProductService {
             throw new RequestValidationException("No data changes found");
         }
 
-
         productDAO.updateProduct(product);
-
-
-
     }
 }
