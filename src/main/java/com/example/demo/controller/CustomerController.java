@@ -59,8 +59,8 @@ public class CustomerController {
     }
 
     @GetMapping("/page/{pageNumber}/{pageSize}/{sort}")
-    public List <CustomerDto> getEmployees(@PathVariable Integer pageNumber, @PathVariable Integer pageSize, @PathVariable String sort) {
-        Page <CustomerDto> data = customerService.getAllCustomerpag(pageNumber, pageSize, sort);
+    public List<CustomerDto> getEmployees(@PathVariable Integer pageNumber, @PathVariable Integer pageSize, @PathVariable String sort) {
+        Page<CustomerDto> data = customerService.getAllCustomerpag(pageNumber, pageSize, sort);
         return data.getContent();
     }
     

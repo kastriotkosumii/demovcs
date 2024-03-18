@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import com.example.demo.model.enums.Gender;
 import com.example.demo.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +41,7 @@ public class Customer extends BaseEntity implements UserDetails  {
         strategy = GenerationType.SEQUENCE,
         generator = "customer_id_seq"
     )
+    @Column(name = "customer_id")
     private Long id;
 
     @Column(
@@ -71,12 +74,29 @@ public class Customer extends BaseEntity implements UserDetails  {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Customer(String name, 
-                    String email, 
-                    String password, 
-                    Integer age, 
-                    Gender gender, 
+    @OneToMany(mappedBy ="customer")
+    @Column(
+            nullable = true
+    )
+    @JsonManagedReference
+    private List<Product> products;
+
+    public Customer(String name,
+                    String email,
+                    String password,
+                    Integer age,
+                    Gender gender,
                     Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.gender = gender;
+        this.role = role;
+    }
+
+    public Customer(long customer_id, String name, String email, int age, Gender gender, String password, Role role) {
+        this.id = customer_id;
         this.name = name;
         this.email = email;
         this.password = password;

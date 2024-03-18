@@ -11,13 +11,14 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
     @Override
     public CustomerDto toDto(Customer customer){
         return new CustomerDto(
-                customer.getId(), 
+                customer.getId(),
                 customer.getName(), 
                 customer.getEmail(),
                 customer.getAge(), 
                 customer.getGender(), 
                 customer.getUsername(),
-                customer.getRole()
+                customer.getRole(),
+                customer.getProducts()
         );
     }
 
