@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -79,7 +80,14 @@ public class Customer extends BaseEntity implements UserDetails  {
             nullable = true
     )
     @JsonManagedReference
-    private List<Product> products;
+    private Set<Product> products;
+
+    @OneToMany(mappedBy ="customer")
+    @Column(
+            nullable = true
+    )
+    @JsonManagedReference
+    private Set<Order> orders;
 
     public Customer(String name,
                     String email,

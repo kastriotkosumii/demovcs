@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Table
 @Entity
 @Getter
@@ -53,4 +55,10 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "customer_id")
     @JsonBackReference
     private Customer customer;
+
+    @ManyToMany(mappedBy = "OrderProducts")
+    Set<Order> OrderProducts;
+
+    /*@ManyToMany(mappedBy = "products")
+    private Set<Order> orders;*/
 }

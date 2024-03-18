@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import java.util.List;
+import java.util.Set;
 
 import com.example.demo.model.Product;
 import com.example.demo.model.enums.Gender;
@@ -13,6 +14,6 @@ public record CustomerDto(Long id,
                             Gender gender,
                             String username, 
                             Role role,
-                            List<Product> product) {
+                            Set<Product> product) {
     
 }
