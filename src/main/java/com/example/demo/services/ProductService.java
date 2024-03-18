@@ -1,18 +1,16 @@
 package com.example.demo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.demo.Exception.RequestValidationException;
-import com.example.demo.payload.request.customer.CustomerUpdateRequest;
 import com.example.demo.payload.request.product.ProductUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.example.demo.Exception.ResourceNotFoundException;
-import com.example.demo.customer.CustomerDAO;
-import com.example.demo.customer.ProductDAO;
+import com.example.demo.dao.CustomerDAO;
+import com.example.demo.dao.ProductDAO;
 import com.example.demo.dto.ProductDto;
 import com.example.demo.mapper.ProductMapper;
 import com.example.demo.model.Customer;

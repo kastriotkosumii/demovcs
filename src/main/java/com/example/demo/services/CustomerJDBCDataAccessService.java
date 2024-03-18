@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.customer.CustomerDAO;
+import com.example.demo.dao.CustomerDAO;
 import com.example.demo.mapper.CustomerRowMapper;
 import com.example.demo.model.Customer;
 

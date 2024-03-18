@@ -1,5 +1,5 @@
 package com.example.demo.services;
-import com.example.demo.customer.CustomerDAO;
+import com.example.demo.dao.CustomerDAO;
 import com.example.demo.payload.request.customer.CustomerRegistrationRequest;
 import com.example.demo.payload.request.customer.CustomerUpdateRequest;
 import com.example.demo.dto.CustomerDto;
