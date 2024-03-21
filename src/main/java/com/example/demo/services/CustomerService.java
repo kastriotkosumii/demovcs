@@ -51,15 +51,14 @@ public class CustomerService {
             );
         }
 
-        Customer customer = new Customer(
-            customerRegistrationRequest.name(),
-            customerRegistrationRequest.email(),
-            passwordEncoder.encode(customerRegistrationRequest.password()),  
-            customerRegistrationRequest.age(),
-            customerRegistrationRequest.gender(),
-            customerRegistrationRequest.role()
-        );
-
+        Customer customer = new Customer();
+        customer.setName(customerRegistrationRequest.name());
+        customer.setEmail(customerRegistrationRequest.email()); 
+        customer.setPassword(passwordEncoder.encode(customerRegistrationRequest.password()));  
+        customer.setAge(customerRegistrationRequest.age());    
+        customer.setGender(customerRegistrationRequest.gender());    
+        customer.setRole(customerRegistrationRequest.role());
+        
         customerDAO.insertCustomer(customer);
     }
 
@@ -107,9 +106,10 @@ public class CustomerService {
     }
 
     public Page<CustomerDto> getAllCustomerpag(Integer pageNumber, Integer pageSize, String sort){
-        List<CustomerDto> allItems =  customerDAO.getCustomerPagination(pageNumber, 
-                                                pageSize, 
-                                                sort).stream().map(customerMapper::toDto).toList();
+        List<CustomerDto> allItems =  customerDAO.getCustomerPagination(pageNumber, pageSize, sort)
+                                                .stream()
+                                                .map(customerMapper::toDto)
+                                                .toList();
 
         return new PageImpl<>(allItems);
     }

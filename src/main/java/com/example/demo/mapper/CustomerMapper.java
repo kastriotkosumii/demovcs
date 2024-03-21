@@ -18,20 +18,23 @@ public class CustomerMapper implements Mapper<CustomerDto, Customer >{
                 customer.getGender(), 
                 customer.getUsername(),
                 customer.getRole(),
-                customer.getProducts()
+                customer.getProducts(),
+                customer.getAddress()
         );
     }
 
     @Override
     public Customer toEntity(CustomerDto customerDto){
-        return new Customer(
-                    customerDto.name(), 
-                    customerDto.email(), 
-                    "password",
-                    customerDto.age(), 
-                    customerDto.gender(),
-                    customerDto.role()
-        );
+        Customer customer = new Customer();
+        customer.setName(customerDto.name());  
+        customer.setEmail(customerDto.email());  
+        customer.setPassword("password"); 
+        customer.setAge(customerDto.age());  
+        customer.setGender(customerDto.gender());
+        customer.setRole(customerDto.role());
+
+        return customer;
+        
     }
     
 }

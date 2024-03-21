@@ -81,29 +81,9 @@ public class Customer extends BaseEntity implements UserDetails  {
     @JsonManagedReference
     private List<Product> products;
 
-    public Customer(String name,
-                    String email,
-                    String password,
-                    Integer age,
-                    Gender gender,
-                    Role role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.age = age;
-        this.gender = gender;
-        this.role = role;
-    }
-
-    public Customer(long customer_id, String name, String email, int age, Gender gender, String password, Role role) {
-        this.id = customer_id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.age = age;
-        this.gender = gender;
-        this.role = role;
-    }
+    @OneToOne(mappedBy = "customer")
+    @JsonManagedReference
+    private Address address;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
