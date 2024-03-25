@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.impl;
 
 import com.example.demo.payload.request.auth.AuthRequest;
 import com.example.demo.payload.response.auth.AuthResponse;

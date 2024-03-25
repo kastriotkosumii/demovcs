@@ -2,8 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.payload.request.customer.CustomerRegistrationRequest;
 import com.example.demo.payload.request.customer.CustomerUpdateRequest;
-import com.example.demo.dto.CustomerDto;
 import com.example.demo.services.CustomerService;
+import com.example.demo.dto.CustomerDto;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;

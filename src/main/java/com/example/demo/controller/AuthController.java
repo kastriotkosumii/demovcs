@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.services.AuthService;
 import com.example.demo.payload.request.auth.AuthRequest;
 import com.example.demo.payload.response.auth.AuthResponse;
+import com.example.demo.services.impl.AuthService;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.http.HttpHeaders;
