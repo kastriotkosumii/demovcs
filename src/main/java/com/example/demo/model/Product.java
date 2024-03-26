@@ -42,6 +42,10 @@ public class Product extends BaseEntity {
     @Column(nullable = false)
     private Integer quantity;
 
+    private double discount;
+
+    private double specialPrice;
+
     @Column(nullable = false)
     private Float price;
 

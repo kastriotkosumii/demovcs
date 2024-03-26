@@ -24,13 +24,13 @@ public class ProductMapper implements Mapper<ProductDto, Product> {
     @Override
     public Product toEntity(ProductDto dto) {
         Product product = new Product();
-        product.setName(dto.name());
-        product.setDescription(dto.description());
-        product.setWeight(dto.weight());
-        product.setHeight(dto.height());
-        product.setWeight(dto.width());
-        product.setQuantity(dto.quantity());
-        product.setPrice(dto.price());
+        product.setName(dto.getName());
+        product.setDescription(dto.getDescription());
+        product.setWeight(dto.getWeight());
+        product.setHeight(dto.getHeight());
+        product.setWeight(dto.getWidth());
+        product.setQuantity(dto.getQuantity());
+        product.setPrice(dto.getPrice());
         return product;
     }
     

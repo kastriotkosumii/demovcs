@@ -9,6 +9,11 @@ Float height,
 float width,
 int quantity,
 float price,
+
+double discount,
+
+double specialPrice,
+
 Long customer_id
 ) {
     

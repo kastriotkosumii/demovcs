@@ -1,14 +1,20 @@
 package com.example.demo.dto;
 
-public record ProductDto(
-    String name,
-    String description,
-    Float weight,
-    Float height,
-    float width,
-    int quantity,
-    float price,
-    Long customer_id
-) {
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class ProductDto{
+
+    private String name;
+    private String description;
+    private Float weight;
+    private Float height;
+    private float width;
+    private int quantity;
+    private float price;
+    private Long customer_id;
    
 }

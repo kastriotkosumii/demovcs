@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.Exception.ResourceNotFoundException;
-import com.example.demo.jwt.JWTUtil;
+import com.example.demo.Exception.jwt.JWTUtil;
 
 import java.util.List;
 

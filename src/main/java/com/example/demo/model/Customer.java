@@ -85,6 +85,10 @@ public class Customer extends BaseEntity implements UserDetails  {
     @JsonManagedReference
     private Address address;
 
+    @OneToOne(mappedBy = "customer", cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    private Cart cart;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

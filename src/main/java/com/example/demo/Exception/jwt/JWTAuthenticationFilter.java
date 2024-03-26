@@ -1,4 +1,4 @@
-package com.example.demo.jwt;
+package com.example.demo.Exception.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

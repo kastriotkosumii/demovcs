@@ -1,13 +1,10 @@
 package com.example.demo.customer;
 
 import com.example.demo.AbstractTestcontainers;
-import com.example.demo.mapper.CustomerRowMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
+public class CustomerServiceImpl extends AbstractTestcontainers {
 
     /*
     private CustomerJDBCDataAccessService underTest;
@@ -15,7 +12,7 @@ public class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
     @BeforeEach
     void setUp() {
-        underTest = new CustomerJDBCDataAccessService(
+        underTest = new CustomerServiceImpl(
                 getJdbcTemplate(),
                 customerRowMapper
         );

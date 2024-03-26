@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Customer;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.mapper.CustomerMapper;
-import com.example.demo.jwt.JWTUtil;
+import com.example.demo.Exception.jwt.JWTUtil;
 
 @Service
 public class AuthService {

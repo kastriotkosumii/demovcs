@@ -1,7 +1,9 @@
 package com.example.demo.services.impl;
+import com.example.demo.model.Cart;
 import com.example.demo.payload.request.customer.CustomerRegistrationRequest;
 import com.example.demo.payload.request.customer.CustomerUpdateRequest;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.services.CartService;
 import com.example.demo.services.CustomerService;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.model.Customer;
@@ -28,10 +30,13 @@ public class CustomerServiceImpl implements CustomerService{
     private final CustomerMapper customerMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder) {
+    private final CartService cartService;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder, CartService cartService) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
         this.passwordEncoder = passwordEncoder;
+        this.cartService = cartService;
     }
 
     @Override
@@ -58,12 +63,17 @@ public class CustomerServiceImpl implements CustomerService{
         }
 
         Customer customer = new Customer();
+        Cart cart = new Cart();
+
+        customer.setCart(cart);
         customer.setName(customerRegistrationRequest.name());
         customer.setEmail(customerRegistrationRequest.email()); 
         customer.setPassword(passwordEncoder.encode(customerRegistrationRequest.password()));  
         customer.setAge(customerRegistrationRequest.age());    
         customer.setGender(customerRegistrationRequest.gender());    
         customer.setRole(customerRegistrationRequest.role());
+
+        cart.setCustomer(customer);
         
         customerRepository.save(customer);
     }
@@ -132,91 +142,5 @@ public class CustomerServiceImpl implements CustomerService{
         }
         return customerRepository.findAll(pageable);
     }
-
-
-    /*
-    public List<CustomerDto> getAllCustomer(){
-        return customerDAO.selectAllCustomers().stream().map(customerMapper::toDto).toList();
-    }
-
-    public CustomerDto getCustomer(Long id) throws ResourceNotFoundException{
-        return customerDAO.selectCustomerById(id)
-        .map(customerMapper::toDto)
-        .orElseThrow(()-> new ResourceNotFoundException("Customer not found!"));
-    }
-
-    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
-
-        // check if email exists
-        String email = customerRegistrationRequest.email();
-        if (customerDAO.existsCustomerWithEmail(email)) {
-            throw new DuplicateResourceException(
-                    "email already taken"
-            );
-        }
-
-        Customer customer = new Customer();
-        customer.setName(customerRegistrationRequest.name());
-        customer.setEmail(customerRegistrationRequest.email()); 
-        customer.setPassword(passwordEncoder.encode(customerRegistrationRequest.password()));  
-        customer.setAge(customerRegistrationRequest.age());    
-        customer.setGender(customerRegistrationRequest.gender());    
-        customer.setRole(customerRegistrationRequest.role());
-        
-        customerDAO.insertCustomer(customer);
-    }
-
-    public void deleteCustomer(Long id) throws ResourceNotFoundException{
-        if(!customerDAO.existsCustomerWithId(id))
-            throw new ResourceNotFoundException("Customer with id "+id+" not found!");
-        customerDAO.deleteCustomer(id);
-    }
-
-    public void updateCustomer(Long customerId,
-                               CustomerUpdateRequest updateRequest) {
-        
-        Customer customer =  customerDAO.selectCustomerById(customerId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                    "customer with id [%s] not found".formatted(customerId))
-                );
-
-        boolean changes = false;
-
-        if (updateRequest.name() != null && !updateRequest.name().equals(customer.getName())) {
-            customer.setName(updateRequest.name());
-            changes = true;
-        }
-
-        if (updateRequest.age() != null && !updateRequest.age().equals(customer.getAge())) {
-            customer.setAge(updateRequest.age());
-            changes = true;
-        }
-
-        if (updateRequest.email() != null && !updateRequest.email().equals(customer.getEmail())) {
-            if (customerDAO.existsCustomerWithEmail(updateRequest.email())) {
-                throw new DuplicateResourceException(
-                        "email already taken"
-                );
-            }
-            customer.setEmail(updateRequest.email());
-            changes = true;
-        }
-
-        if (!changes) {
-           throw new RequestValidationException("no data changes found");
-        }
-
-        customerDAO.updateCustomer(customer);
-    }
-
-    public Page<CustomerDto> getAllCustomerpag(Integer pageNumber, Integer pageSize, String sort){
-        List<CustomerDto> allItems =  customerDAO.getCustomerPagination(pageNumber, pageSize, sort)
-                                                .stream()
-                                                .map(customerMapper::toDto)
-                                                .toList();
-
-        return new PageImpl<>(allItems);
-    }
-    */
 
 }
