@@ -1,7 +1,7 @@
 package com.example.demo;
 
 
-import org.flywaydb.core.Flyway;
+//import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +18,7 @@ public abstract class AbstractTestcontainers  {
 
     @BeforeAll
     static void beforeAll() {
+        /*
         Flyway flyway = Flyway
                 .configure()
                 .dataSource(
@@ -26,6 +27,7 @@ public abstract class AbstractTestcontainers  {
                         postgreSQLContainer.getPassword()
                 ).load();
         flyway.migrate();
+        */
     }
 
     @Container

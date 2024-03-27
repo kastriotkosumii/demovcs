@@ -1,11 +1,11 @@
 package com.example.demo.services.impl;
 
-import com.example.demo.dto.ProductDto;
 import org.modelmapper.ModelMapper;
 
 import com.example.demo.Exception.DuplicateResourceException;
 import com.example.demo.Exception.ResourceNotFoundException;
 import com.example.demo.dto.CartDto;
+import com.example.demo.dto.ProductCartDto;
 import com.example.demo.model.Cart;
 import com.example.demo.model.CartItem;
 import com.example.demo.model.Product;
@@ -14,7 +14,6 @@ import com.example.demo.repository.CartItemRepository;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.services.CartService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -73,12 +72,16 @@ public class CartServiceImpl implements CartService {
 
         product.setQuantity(product.getQuantity() - cartRegistrationRequest.quantity());
 
-        cart.setTotalPrice(cart.getTotalPrice() + (product.getPrice() * cartRegistrationRequest.quantity()));
+        Double totalPrice = cart.getTotalPrice() + (product.getPrice() * cartRegistrationRequest.quantity());
+
+        cart.setTotalPrice(totalPrice);
+
+        cartRepository.save(cart);
 
         CartDto cartDto = modelMapper.map(cart, CartDto.class);
 
-        List<ProductDto> productDtos = cart.getCartItems().stream()
-                .map(p -> modelMapper.map(p.getProduct(), ProductDto.class)).collect(Collectors.toList());
+        List<ProductCartDto> productDtos = cart.getCartItems().stream()
+                .map(p -> modelMapper.map(p.getProduct(), ProductCartDto.class)).collect(Collectors.toList());
 
         cartDto.setProducts(productDtos);
 

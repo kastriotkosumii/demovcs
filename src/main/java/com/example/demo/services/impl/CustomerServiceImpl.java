@@ -3,7 +3,6 @@ import com.example.demo.model.Cart;
 import com.example.demo.payload.request.customer.CustomerRegistrationRequest;
 import com.example.demo.payload.request.customer.CustomerUpdateRequest;
 import com.example.demo.repository.CustomerRepository;
-import com.example.demo.services.CartService;
 import com.example.demo.services.CustomerService;
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.model.Customer;
@@ -22,7 +21,6 @@ import com.example.demo.Exception.RequestValidationException;
 
 import java.util.List;
 
-
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
@@ -30,13 +28,10 @@ public class CustomerServiceImpl implements CustomerService{
     private final CustomerMapper customerMapper;
     private final PasswordEncoder passwordEncoder;
 
-    private final CartService cartService;
-
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder, CartService cartService) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
         this.passwordEncoder = passwordEncoder;
-        this.cartService = cartService;
     }
 
     @Override
