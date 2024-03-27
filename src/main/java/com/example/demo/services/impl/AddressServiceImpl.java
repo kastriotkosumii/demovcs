@@ -35,23 +35,5 @@ public class AddressServiceImpl implements AddressService {
 
         addressRepository.save(address);
     }
-
-    /*
-    public void addAddress(AddressRegistrtionRequest addressRegistrtionRequest){
-        
-        Customer customer = customerDAO.selectCustomerById(addressRegistrtionRequest.customer_id())
-                    .orElseThrow(() -> new ResourceNotFoundException("Customer not found!"));
-
-        Address address = new Address();
-        address.setCity(addressRegistrtionRequest.city());
-        address.setCountry(addressRegistrtionRequest.country());
-        address.setHouseNumber(addressRegistrtionRequest.houseNumber());
-        address.setZipcode(addressRegistrtionRequest.zipcode());
-        address.setCustomer(customer);
-
-        addressDAO.insertAddress(address);
-
-    }
-    */
     
 }
